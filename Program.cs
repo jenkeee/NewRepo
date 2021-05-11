@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -145,15 +145,15 @@ namespace secondtry
                 {
                     arrNoLoaded = StaticClass.LoadArrayFromFile(AppDomain.CurrentDomain.BaseDirectory + "data2.txt");
                 }
-                catch (Exception error)
-                {
+                catch (Exception error) when (error.Data != null)
+            {
 
-                    MyHelper.MyPause(error.Message + "\nДальнейшая работа программы невозможна. Нажмите любую кнопку ...");
-                    return;
+                    MyHelper.MyPause(error.Message + "\nДальнейшая работа программы невозможна. Нажмите любую кнопку ...");               
+                
                }
-          ///////////////////////////////// пытаюсь понять как не выходить из метода а перейти к следующим инструкциям
+          ///////////////////////////////// пытаюсь понять как не выходить из метода а перейти к следующим инструкциям // это клнечно if
             WriteLine("Массив загруженных элементов из файла:");
-            Array.ForEach(arrNoLoaded, WriteLine); //вывод массива  // в случае ошибки получаем  arrNoLoaded 
+            if (arrNoLoaded != arrNoLoaded) Array.ForEach(arrNoLoaded, WriteLine); //вывод массива  // добавил if что оно есть вобще 
             WriteLine(arrNoLoaded);
             MyHelper.MyFooter();
             ReadKey();
